@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b12">
+<title>ClipNova — Discover your next favorite video</title>
+<style>
+:root{--bg:#090b12;--panel:#111522;--panel2:#171d2d;--text:#f4f6fb;--muted:#9aa4b8;--line:#252d40;--accent:#8b5cf6;--accent2:#22d3ee}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input{font:inherit}button{cursor:pointer}.topbar{height:72px;display:flex;align-items:center;gap:24px;padding:0 5%;border-bottom:1px solid var(--line);position:sticky;top:0;background:#090b12ee;backdrop-filter:blur(14px);z-index:5}
+.brand{font-size:23px;font-weight:850;letter-spacing:-1px;white-space:nowrap}.brand span{color:var(--accent2)}.search{flex:1;max-width:580px;margin:auto;position:relative}.search input{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:12px 18px 12px 44px;color:var(--text);outline:none}.search input:focus{border-color:var(--accent)}.search b{position:absolute;left:16px;top:10px;color:var(--muted);font-size:18px}.upload-btn,.primary{border:0;border-radius:999px;padding:11px 18px;background:linear-gradient(110deg,var(--accent),#5b7cfa);color:white;font-weight:750}.upload-btn:hover,.primary:hover{filter:brightness(1.12)}.layout{display:grid;grid-template-columns:220px 1fr;max-width:1500px;margin:auto}.sidebar{padding:26px 18px;border-right:1px solid var(--line);min-height:calc(100vh - 72px)}.nav{display:flex;gap:13px;align-items:center;padding:12px 14px;border-radius:12px;color:var(--muted);margin-bottom:5px}.nav.active,.nav:hover{background:var(--panel2);color:white}.side-note{color:var(--muted);font-size:12px;padding:20px 12px}.main{padding:30px 4.5% 70px;min-width:0}.hero{padding:28px 30px;border:1px solid #343052;border-radius:22px;background:radial-gradient(ellipse at 85% 10%,#6043a955,transparent 40%),linear-gradient(120deg,#17152c,#111827);margin-bottom:30px}.eyebrow{color:#a5f3fc;font-weight:750;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}.hero h1{font-size:clamp(28px,4vw,43px);line-height:1.1;margin:10px 0}.hero p{color:#c0c7d8;max-width:600px;margin:0 0 18px}.section-head{display:flex;align-items:center;justify-content:space-between;margin:24px 0 16px}.section-head h2{font-size:21px;margin:0}.muted{color:var(--muted)}.chips{display:flex;gap:9px;overflow:auto;padding-bottom:8px}.chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:8px 15px;white-space:nowrap}.chip.active,.chip:hover{background:#302451;color:white;border-color:#6d50b2}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 18px}.video-card{min-width:0;cursor:pointer}.thumb{aspect-ratio:16/9;border-radius:15px;overflow:hidden;background:linear-gradient(135deg,#27213f,#152b3c);position:relative;border:1px solid #ffffff12;display:grid;place-items:center}.thumb video{width:100%;height:100%;object-fit:cover}.thumb .placeholder{font-size:38px;opacity:.9}.duration{position:absolute;right:9px;bottom:9px;background:#000b;border-radius:5px;padding:2px 6px;font-size:11px}.video-info{display:flex;gap:11px;padding:12px 2px}.avatar{width:36px;height:36px;flex:none;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#8b5cf6,#22d3ee);font-weight:800}.video-info h3{font-size:14px;line-height:1.35;margin:0 0 5px}.video-info p{font-size:12px;color:var(--muted);margin:0}.empty{grid-column:1/-1;border:1px dashed var(--line);border-radius:18px;text-align:center;padding:50px 20px;color:var(--muted)}.empty strong{display:block;color:var(--text);font-size:18px;margin-bottom:5px}.footer{border-top:1px solid var(--line);margin-top:45px;padding-top:18px;color:var(--muted);font-size:12px}
+.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:20px;z-index:10}.modal.show{display:grid}.dialog{background:var(--panel);border:1px solid var(--line);border-radius:20px;width:min(560px,100%);padding:24px;max-height:90vh;overflow:auto}.dialog h2{margin:0 0 6px}.field{display:block;margin:16px 0}.field span{display:block;font-size:13px;color:var(--muted);margin-bottom:7px}.field input,.field select{width:100%;background:#0b0f19;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px;outline:none}.filebox{border:1px dashed #555078;border-radius:14px;padding:22px;text-align:center;background:#0b0f19}.filebox input{max-width:100%}.dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}.secondary{background:var(--panel2);color:white;border:1px solid var(--line);border-radius:999px;padding:10px 16px}.watch-dialog{width:min(900px,100%)}.watch-dialog video{width:100%;max-height:65vh;background:#000;border-radius:12px}.watch-dialog h2{margin-top:15px}.close{float:right;background:transparent;border:0;color:var(--muted);font-size:23px}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#20283a;border:1px solid var(--line);padding:11px 17px;border-radius:12px;display:none;z-index:20}.toast.show{display:block}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:175px 1fr}.sidebar{padding:20px 10px}}
+@media(max-width:680px){.topbar{padding:0 15px;gap:12px;height:64px}.brand{font-size:20px}.search{max-width:none}.search input{padding:10px 12px 10px 35px}.search b{left:12px;top:7px}.upload-btn{padding:9px 12px;font-size:12px}.layout{display:block}.sidebar{display:flex;min-height:0;padding:8px 12px;gap:5px;overflow:auto;border-right:0;border-bottom:1px solid var(--line)}.nav{white-space:nowrap;margin:0;padding:8px 11px;font-size:13px}.side-note{display:none}.main{padding:20px 15px 50px}.hero{padding:23px 20px}.grid{grid-template-columns:1fr;gap:18px}.thumb{border-radius:12px}.section-head{margin-top:20px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">clip<span>nova</span></div>
+  <div class="search"><b>⌕</b><input id="search" type="search" placeholder="Search videos..." aria-label="Search videos"></div>
+  <button class="upload-btn" id="openUpload">＋ Upload</button>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="nav active">⌂ &nbsp; Home</div><div class="nav">▣ &nbsp; Explore</div><div class="nav">◷ &nbsp; Recently added</div>
+    <div class="side-note">YOUR SPACE<br><br>Your uploaded videos stay in this browser on this device in this demo.</div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Your video universe</div>
+      <h1>Watch something<br>worth sharing.</h1>
+      <p>Welcome to ClipNova. Discover fresh clips, save your favorites, and add your own videos to your local library.</p>
+      <button class="primary" id="heroUpload">Upload a video&nbsp; ↗</button>
+    </section>
+    <div class="section-head"><h2>Explore videos</h2><span class="muted" id="count">0 videos</span></div>
+    <div class="chips" id="chips"><button class="chip active" data-cat="All">All</button><button class="chip" data-cat="Entertainment">Entertainment</button><button class="chip" data-cat="Gaming">Gaming</button><button class="chip" data-cat="Education">Education</button><button class="chip" data-cat="Music">Music</button><button class="chip" data-cat="Other">Other</button></div>
+    <div class="grid" id="grid"></div>
+    <div class="footer">ClipNova • A starter video website. Uploads in this demo are stored locally in your browser, not shared publicly.</div>
+  </main>
+</div>
+
+<div class="modal" id="uploadModal">
+  <div class="dialog">
+    <button class="close" id="closeUpload" aria-label="Close">×</button>
+    <h2>Upload a video</h2><p class="muted">Add a video to your ClipNova library.</p>
+    <form id="uploadForm">
+      <label class="field"><span>Video title</span><input id="title" required maxlength="80" placeholder="Give your video a title"></label>
+      <label class="field"><span>Category</span><select id="category"><option>Entertainment</option><option>Gaming</option><option>Education</option><option>Music</option><option>Other</option></select></label>
+      <label class="field"><span>Choose a video file</span><div class="filebox">🎥<br><input id="file" type="file" accept="video/*" required><p class="muted" style="font-size:12px;margin-bottom:0">For this demo, choose a video stored on your device.</p></div></label>
+      <div class="dialog-actions"><button type="button" class="secondary" id="cancelUpload">Cancel</button><button class="primary" type="submit">Add video</button></div>
+    </form>
+  </div>
+</div>
+<div class="modal" id="watchModal">
+  <div class="dialog watch-dialog">
+    <button class="close" id="closeWatch" aria-label="Close">×</button>
+    <video id="player" controls playsinline></video><h2 id="watchTitle"></h2><p class="muted" id="watchMeta"></p>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const DB_NAME='clipnova-db', STORE='videos';
+let db, videos=[], activeCategory='All', query='', currentObjectUrl=null;
+const $=id=>document.getElementById(id);
+function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=()=>req.result.createObjectStore(STORE,{keyPath:'id'});req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}
+function transaction(mode){return db.transaction(STORE,mode).objectStore(STORE);}
+function loadVideos(){return new Promise((resolve,reject)=>{const req=transaction('readonly').getAll();req.onsuccess=()=>resolve(req.result.sort((a,b)=>b.created-a.created));req.onerror=()=>reject(req.error);});}
+function saveVideo(video){return new Promise((resolve,reject)=>{const req=transaction('readwrite').put(video);req.onsuccess=resolve;req.onerror=()=>reject(req.error);});}
+function deleteVideo(id){return new Promise((resolve,reject)=>{const req=transaction('readwrite').delete(id);req.onsuccess=resolve;req.onerror=()=>reject(req.error);});}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function showToast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2600);}
+function render(){
+ const filtered=videos.filter(v=>(activeCategory==='All'||v.category===activeCategory)&&(v.title.toLowerCase().includes(query)||v.category.toLowerCase().includes(query)));
+ $('count').textContent=`${filtered.length} video${filtered.length===1?'':'s'}`;
+ if(!filtered.length){$('grid').innerHTML=`<div class="empty"><strong>${videos.length?'No videos match your search':'Your ClipNova library is empty'}</strong>${videos.length?'Try another search or category.':'Upload your first video to see it here.'}</div>`;return;}
+ $('grid').innerHTML=filtered.map(v=>`<article class="video-card" data-id="${v.id}">
+   <div class="thumb"><div class="placeholder">▶</div><span class="duration">${esc(v.category)}</span></div>
+   <div class="video-info"><div class="avatar">C</div><div style="min-width:0;flex:1"><h3>${esc(v.title)}</h3><p>ClipNova • ${new Date(v.created).toLocaleDateString()}</p></div><button class="secondary delete" data-delete="${v.id}" title="Delete video" style="padding:5px 9px">⋯</button></div>
+ </article>`).join('');
+ document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('click',()=>watch(card.dataset.id)));
+ document.querySelectorAll('[data-delete]').forEach(btn=>btn.addEventListener('click',async e=>{e.stopPropagation();if(confirm('Delete this video from this browser?')){await deleteVideo(btn.dataset.delete);videos=await loadVideos();render();showToast('Video deleted');}}));
+ // Render actual local video thumbnails after cards are created.
+ filtered.forEach(v=>{const card=document.querySelector(`[data-id="${v.id}"] .thumb`);if(card){const vid=document.createElement('video');vid.muted=true;vid.preload='metadata';vid.src=URL.createObjectURL(v.blob);vid.onloadedmetadata=()=>{const d=Math.floor(vid.duration);if(Number.isFinite(d)){const tag=document.createElement('span');tag.className='duration';tag.textContent=`${Math.floor(d/60)}:${String(d%60).padStart(2,'0')}`;card.querySelector('.duration')?.remove();card.append(tag);}};card.prepend(vid);card.querySelector('.placeholder')?.remove();}});
+}
+function openUpload(){ $('uploadModal').classList.add('show');}
+function closeUpload(){ $('uploadModal').classList.remove('show');$('uploadForm').reset();}
+function watch(id){const v=videos.find(x=>x.id===id);if(!v)return;if(currentObjectUrl)URL.revokeObjectURL(currentObjectUrl);currentObjectUrl=URL.createObjectURL(v.blob);$('player').src=currentObjectUrl;$('watchTitle').textContent=v.title;$('watchMeta').textContent=`${v.category} • Added ${new Date(v.created).toLocaleDateString()}`;$('watchModal').classList.add('show');}
+function closeWatch(){ $('player').pause();$('player').removeAttribute('src');$('player').load();$('watchModal').classList.remove('show');if(currentObjectUrl){URL.revokeObjectURL(currentObjectUrl);currentObjectUrl=null;}}
+$('openUpload').onclick=openUpload;$('heroUpload').onclick=openUpload;$('closeUpload').onclick=closeUpload;$('cancelUpload').onclick=closeUpload;$('closeWatch').onclick=closeWatch;
+$('search').addEventListener('input',e=>{query=e.target.value.toLowerCase();render();});
+$('chips').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;activeCategory=b.dataset.cat;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===b));render();});
+$('uploadForm').addEventListener('submit',async e=>{e.preventDefault();const file=$('file').files[0];if(!file)return;if(!file.type.startsWith('video/')){showToast('Please choose a video file.');return;}const video={id:crypto.randomUUID(),title:$('title').value.trim(),category:$('category').value,blob:file,created:Date.now(),size:file.size};try{await saveVideo(video);videos=await loadVideos();closeUpload();render();showToast('Your video was added to this browser!');}catch(err){showToast('Could not save. The file may be too large for browser storage.');}});
+$('watchModal').addEventListener('click',e=>{if(e.target===$('watchModal'))closeWatch();});
+$('uploadModal').addEventListener('click',e=>{if(e.target===$('uploadModal'))closeUpload();});
+(async()=>{try{db=await openDB();videos=await loadVideos();render();}catch(e){$('grid').innerHTML='<div class="empty"><strong>Browser storage is unavailable</strong>Try opening this site in a modern browser.</div>';}})();
+</script>
+</body>
+</html>
